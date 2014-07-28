@@ -22,6 +22,11 @@
 		98627DE0198701F300291707 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98627DC4198701F300291707 /* CoreData.framework */; };
 		98627DE8198701F300291707 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 98627DE6198701F300291707 /* InfoPlist.strings */; };
 		98627DEA198701F300291707 /* ToDoExamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 98627DE9198701F300291707 /* ToDoExamTests.m */; };
+		98627DF41987023800291707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98627DF31987023800291707 /* Main.storyboard */; };
+		98627DF91987040700291707 /* BKTodosController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98627DF81987040700291707 /* BKTodosController.m */; };
+		98627DFC1987086300291707 /* BKAddTodoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98627DFB1987086300291707 /* BKAddTodoController.m */; };
+		98627DFF19870B2A00291707 /* BKTodoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98627DFE19870B2A00291707 /* BKTodoController.m */; };
+		98627E0219870C4E00291707 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 98627E0119870C4E00291707 /* Todo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,15 @@
 		98627DE5198701F300291707 /* ToDoExamTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ToDoExamTests-Info.plist"; sourceTree = "<group>"; };
 		98627DE7198701F300291707 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		98627DE9198701F300291707 /* ToDoExamTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoExamTests.m; sourceTree = "<group>"; };
+		98627DF31987023800291707 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		98627DF71987040700291707 /* BKTodosController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKTodosController.h; path = Controllers/BKTodosController.h; sourceTree = "<group>"; };
+		98627DF81987040700291707 /* BKTodosController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BKTodosController.m; path = Controllers/BKTodosController.m; sourceTree = "<group>"; };
+		98627DFA1987086300291707 /* BKAddTodoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKAddTodoController.h; path = Controllers/BKAddTodoController.h; sourceTree = "<group>"; };
+		98627DFB1987086300291707 /* BKAddTodoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BKAddTodoController.m; path = Controllers/BKAddTodoController.m; sourceTree = "<group>"; };
+		98627DFD19870B2A00291707 /* BKTodoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKTodoController.h; sourceTree = "<group>"; };
+		98627DFE19870B2A00291707 /* BKTodoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKTodoController.m; sourceTree = "<group>"; };
+		98627E0019870C4E00291707 /* Todo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Todo.h; path = Models/Todo.h; sourceTree = "<group>"; };
+		98627E0119870C4E00291707 /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Todo.m; path = Models/Todo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +129,11 @@
 		98627DC6198701F300291707 /* ToDoExam */ = {
 			isa = PBXGroup;
 			children = (
+				98627DF6198702DB00291707 /* Controllers */,
+				98627DF5198702B600291707 /* Models */,
 				98627DCF198701F300291707 /* BKAppDelegate.h */,
 				98627DD0198701F300291707 /* BKAppDelegate.m */,
+				98627DF31987023800291707 /* Main.storyboard */,
 				98627DD5198701F300291707 /* Images.xcassets */,
 				98627DD2198701F300291707 /* ToDoExam.xcdatamodeld */,
 				98627DC7198701F300291707 /* Supporting Files */,
@@ -151,6 +168,28 @@
 				98627DE6198701F300291707 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		98627DF5198702B600291707 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				98627E0019870C4E00291707 /* Todo.h */,
+				98627E0119870C4E00291707 /* Todo.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		98627DF6198702DB00291707 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				98627DFD19870B2A00291707 /* BKTodoController.h */,
+				98627DFE19870B2A00291707 /* BKTodoController.m */,
+				98627DFA1987086300291707 /* BKAddTodoController.h */,
+				98627DFB1987086300291707 /* BKAddTodoController.m */,
+				98627DF71987040700291707 /* BKTodosController.h */,
+				98627DF81987040700291707 /* BKTodosController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98627DF41987023800291707 /* Main.storyboard in Resources */,
 				98627DCB198701F300291707 /* InfoPlist.strings in Resources */,
 				98627DD6198701F300291707 /* Images.xcassets in Resources */,
 			);
@@ -249,9 +289,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98627DFC1987086300291707 /* BKAddTodoController.m in Sources */,
 				98627DD4198701F300291707 /* ToDoExam.xcdatamodeld in Sources */,
+				98627DF91987040700291707 /* BKTodosController.m in Sources */,
 				98627DCD198701F300291707 /* main.m in Sources */,
+				98627DFF19870B2A00291707 /* BKTodoController.m in Sources */,
 				98627DD1198701F300291707 /* BKAppDelegate.m in Sources */,
+				98627E0219870C4E00291707 /* Todo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToDoExam/ToDoExam-Prefix.pch";
 				INFOPLIST_FILE = "ToDoExam/ToDoExam-Info.plist";
@@ -381,6 +426,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToDoExam/ToDoExam-Prefix.pch";
 				INFOPLIST_FILE = "ToDoExam/ToDoExam-Info.plist";
