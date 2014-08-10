@@ -13,5 +13,6 @@
 @interface Todo : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * done;
 
 @end

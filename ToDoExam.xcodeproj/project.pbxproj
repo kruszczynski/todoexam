@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9804B250199817C700872167 /* BKTodoCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9804B24F199817C700872167 /* BKTodoCellController.m */; };
 		98627DBF198701F300291707 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98627DBE198701F300291707 /* Foundation.framework */; };
 		98627DC1198701F300291707 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98627DC0198701F300291707 /* CoreGraphics.framework */; };
 		98627DC3198701F300291707 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98627DC2198701F300291707 /* UIKit.framework */; };
@@ -40,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9804B24D1998171400872167 /* ToDoExam 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ToDoExam 2.xcdatamodel"; sourceTree = "<group>"; };
+		9804B24E199817C700872167 /* BKTodoCellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKTodoCellController.h; sourceTree = "<group>"; };
+		9804B24F199817C700872167 /* BKTodoCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKTodoCellController.m; sourceTree = "<group>"; };
 		98627DBB198701F300291707 /* ToDoExam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoExam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98627DBE198701F300291707 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		98627DC0198701F300291707 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -188,6 +192,8 @@
 				98627DFB1987086300291707 /* BKAddTodoController.m */,
 				98627DF71987040700291707 /* BKTodosController.h */,
 				98627DF81987040700291707 /* BKTodosController.m */,
+				9804B24E199817C700872167 /* BKTodoCellController.h */,
+				9804B24F199817C700872167 /* BKTodoCellController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -289,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9804B250199817C700872167 /* BKTodoCellController.m in Sources */,
 				98627DFC1987086300291707 /* BKAddTodoController.m in Sources */,
 				98627DD4198701F300291707 /* ToDoExam.xcdatamodeld in Sources */,
 				98627DF91987040700291707 /* BKTodosController.m in Sources */,
@@ -494,6 +501,7 @@
 				98627DEF198701F300291707 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98627DF0198701F300291707 /* Build configuration list for PBXNativeTarget "ToDoExamTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +510,7 @@
 				98627DF2198701F300291707 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
@@ -509,9 +518,10 @@
 		98627DD2198701F300291707 /* ToDoExam.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9804B24D1998171400872167 /* ToDoExam 2.xcdatamodel */,
 				98627DD3198701F300291707 /* ToDoExam.xcdatamodel */,
 			);
-			currentVersion = 98627DD3198701F300291707 /* ToDoExam.xcdatamodel */;
+			currentVersion = 9804B24D1998171400872167 /* ToDoExam 2.xcdatamodel */;
 			path = ToDoExam.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

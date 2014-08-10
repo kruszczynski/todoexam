@@ -10,6 +10,7 @@
 #import "BKTodoController.h"
 #import "BKAddTodoController.h"
 #import "Todo.h"
+#import "BKTodoCellController.h"
 
 @interface BKTodosController ()
 @end
@@ -43,9 +44,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ToDoCell" forIndexPath:indexPath];
+    BKTodoCellController *cell = (BKTodoCellController *) [tableView dequeueReusableCellWithIdentifier:@"ToDoCell" forIndexPath:indexPath];
     Todo *todo = (Todo *) [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = todo.name;
+    cell.todo = todo;
     
     return cell;
 }
@@ -113,8 +114,8 @@
             
         case NSFetchedResultsChangeUpdate: {
             Todo *changedTodo = [self.fetchedResultsController objectAtIndexPath:indexPath];
-            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            cell.textLabel.text = changedTodo.name;
+            BKTodoCellController *cell = (BKTodoCellController *) [self.tableView cellForRowAtIndexPath:indexPath];
+            cell.todo = changedTodo;
         }
             break;
     }
@@ -130,7 +131,7 @@
         controller.managedObjectContext = self.managedObjectContext;
     } else if ([segue.identifier isEqualToString:@"TodoDetails"]) {
         BKTodoController *controller = (BKTodoController *) [segue destinationViewController];
-        UITableViewCell *cell = (UITableViewCell *) sender;
+        BKTodoCellController *cell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         controller.todo = (Todo *) [self.fetchedResultsController objectAtIndexPath:indexPath];
         controller.managedObjectContext = self.managedObjectContext;

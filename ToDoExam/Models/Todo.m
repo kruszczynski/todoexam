@@ -12,5 +12,6 @@
 @implementation Todo
 
 @dynamic name;
+@dynamic done;
 
 @end

@@ -11,6 +11,7 @@
 
 @interface BKTodoController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UISwitch *doneSwitch;
 
 @end
 
@@ -18,6 +19,7 @@
 
 - (void) viewDidLoad {
     self.nameField.text = self.todo.name;
+    [self.doneSwitch setOn: [self.todo.done boolValue] animated:NO];
 }
 
 #pragma navigation
@@ -25,12 +27,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self.nameField resignFirstResponder];
     self.todo.name = self.nameField.text;
-    BKTodosController *controller = (BKTodosController *) [segue destinationViewController];
+    self.todo.done = [NSNumber numberWithBool:self.doneSwitch.on];
     NSError *error;
     if ( !  [[self managedObjectContext]save:&error] ) {
         NSLog(@"An error! %@",error);
-    } else {
-        [controller.tableView reloadData];
     }
 }
 
