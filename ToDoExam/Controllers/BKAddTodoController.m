@@ -28,7 +28,6 @@
 #pragma navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    BKTodosController *controller = (BKTodosController *) [segue destinationViewController];
     if (self.isSubmitted) {
         Todo *newTodo = (Todo *)[NSEntityDescription
                                  insertNewObjectForEntityForName:@"Todo"
@@ -39,9 +38,6 @@
         
         if ( !  [[self managedObjectContext]save:&error] ) {
             NSLog(@"An error! %@",error);
-        } else {
-            [controller fetchTodos];
-            [controller.tableView reloadData];
         }
     }
 }

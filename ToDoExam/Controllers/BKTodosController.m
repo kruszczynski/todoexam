@@ -19,7 +19,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self fetchTodos];
+    
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Error! %@",error);
+        abort();
+    }
 }
 
 
@@ -32,13 +37,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.todos count];
+    id <NSFetchedResultsSectionInfo> secInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    return [secInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ToDoCell" forIndexPath:indexPath];
-    Todo *todo = (Todo *)self.todos[indexPath.row];
+    Todo *todo = (Todo *) [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = todo.name;
     
     return cell;
@@ -50,32 +56,70 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         [self deleteTodoAtIndexPath:indexPath];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
 #pragma mark - Data Handling
 
 - (void)deleteTodoAtIndexPath:(NSIndexPath *)indexPath {
-    Todo *todo = (Todo *)self.todos[indexPath.row];
+    Todo *todo = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [self.managedObjectContext deleteObject:todo];
     NSError *error;
     if ( !  [[self managedObjectContext]save:&error] ) {
         NSLog(@"An error! %@",error);
-    } else {
-        [self fetchTodos];
     }
 }
 
-- (void)fetchTodos {
+#pragma mark - Fetched Results Controller
+
+-(NSFetchedResultsController *) fetchedResultsController {
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Todo" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Todo"
+                                              inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSError *error = nil;
-    self.todos = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
+                                                                   ascending:YES];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    
+    _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    _fetchedResultsController.delegate = self;
+    
+    return _fetchedResultsController;
 }
 
+-(void) controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+-(void) controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+}
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeUpdate: {
+            Todo *changedTodo = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            cell.textLabel.text = changedTodo.name;
+        }
+            break;
+    }
+    
+}
 
 #pragma mark - Navigation
 
@@ -88,7 +132,7 @@
         BKTodoController *controller = (BKTodoController *) [segue destinationViewController];
         UITableViewCell *cell = (UITableViewCell *) sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        controller.todo = self.todos[indexPath.row];
+        controller.todo = (Todo *) [self.fetchedResultsController objectAtIndexPath:indexPath];
         controller.managedObjectContext = self.managedObjectContext;
     }
 }

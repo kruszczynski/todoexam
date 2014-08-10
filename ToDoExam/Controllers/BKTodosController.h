@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BKTodosController : UITableViewController
-@property (strong, nonatomic) NSArray *todos;
+@interface BKTodosController : UITableViewController <NSFetchedResultsControllerDelegate>
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
-- (void)fetchTodos;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
